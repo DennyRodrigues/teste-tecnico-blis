@@ -1,0 +1,57 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+model Users {
+  id         String    @id @default(uuid())
+  name       String
+  birthdate  DateTime
+  email      String    @unique
+  password   String
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt
+  documents  UserDocuments[]
+  abilities  UsersAbilities[]
+}
+
+model UserDocuments {
+  id         String   @id @default(uuid())
+  name       String
+  url        String
+  user_id    String
+  user       Users    @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  created_at DateTime @default(now())
+  updated_at DateTime @updatedAt
+}
+
+model Abilities {
+  id         String    @id @default(uuid())
+  name       String    @unique
+  active     Boolean   @default(true)
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt
+  users      UsersAbilities[]
+}
+
+model UsersAbilities {
+  id               String    @id @default(uuid())
+  user_id          String
+  ability_id       String
+  years_experience Int
+  user             Users     @relation(fields: [user_id], references: [id], onDelete: Cascade)
+  ability          Abilities @relation(fields: [ability_id], references: [id], onDelete: Cascade)
+  created_at       DateTime  @default(now())
+  updated_at       DateTime  @updatedAt
+
+  @@unique([user_id, ability_id]) // Evita duplicidade de usuário e habilidade
+}
