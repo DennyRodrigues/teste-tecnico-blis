@@ -1,8 +1,21 @@
 {
+  "ts-node": {
+    "require": ["tsconfig-paths/register"]
+  },
   "compilerOptions": {
+    "outDir": "./dist",
     "baseUrl": "./",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": ["src/*"],
+      "*": ["node_modules/*", "src/*"],
+      "@/config/*": ["src/config/*"],
+      "@/controllers/*": ["src/controllers/*"],
+      "@/middlewares/*": ["src/middlewares/*"],
+      "@/models/*": ["src/models/*"],
+      "@/routes/*": ["src/routes/*"],
+      "@/prismaClient/*": ["src/prismaClient/*"],
+      "@/types/*": ["src/types/*"],
+      "@/utils/*": ["src/utils/*"]
     },
     /* Visit https://aka.ms/tsconfig to read more about this file */
 
@@ -115,5 +128,6 @@
     // "skipDefaultLibCheck": true,                      /* Skip type checking .d.ts files that are included with TypeScript. */
     "skipLibCheck": true /* Skip type checking all .d.ts files. */
   },
-
+  "exclude": ["node_modules", "build"],
+  "include": ["**/*.ts", "**/*.prisma"]
 }

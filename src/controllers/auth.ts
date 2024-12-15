@@ -1,13 +1,12 @@
-import expressAsyncHandler from "express-async-handler";
 import bcrypt from "bcrypt";
+import expressAsyncHandler from "express-async-handler";
 import { ValidationErrorItem } from "joi";
-import { prisma } from "../prismaClient";
-import { loginSchema, registerSchema } from "../validation/auth";
 import jwt from "jsonwebtoken";
-import multer from "multer";
-import path from "path";
+
+import { prisma } from "@/prismaClient";
 import { AuthenticatedRequest } from "@/types/requests";
-import { promises } from "fs";
+import { upload } from "@/utils/uploadFile";
+import { loginSchema, registerSchema } from "@/validation/auth";
 
 export const registerUser = expressAsyncHandler(async (req, res) => {
   const { error, value } = registerSchema.validate(req.body, {
@@ -93,33 +92,6 @@ export const loginUser = expressAsyncHandler(async (req, res) => {
   });
 });
 
-const storage = multer.diskStorage({
-  destination: function (req, file, cb) {
-    cb(null, "uploads/");
-  },
-  filename: function (req, file, cb) {
-    cb(null, Date.now() + path.extname(file.originalname));
-  },
-});
-
-const upload = multer({
-  storage: storage,
-  limits: { fileSize: 10 * 1024 * 1024 }, // 10MB limit
-  fileFilter: function (req, file, cb) {
-    const fileType = /pdf/;
-    const extname = fileType.test(
-      path.extname(file.originalname).toLowerCase()
-    );
-    const mimetype = fileType.test(file.mimetype);
-
-    if (extname && mimetype) {
-      return cb(null, true);
-    } else {
-      return cb(null, false);
-    }
-  },
-});
-
 export const saveUserDocuments = expressAsyncHandler(
   async (req: AuthenticatedRequest, res) => {
     upload.single("document")(req, res, async () => {
@@ -132,7 +104,7 @@ export const saveUserDocuments = expressAsyncHandler(
 
       if (!userInfo) {
         res.status(400).json({
-          message: "user",
+          message: "user does not exists",
         });
         return;
       }
@@ -140,7 +112,7 @@ export const saveUserDocuments = expressAsyncHandler(
       if (!req.file) {
         return res
           .status(400)
-          .json({ message: "No file uploaded or invalid file format" });
+          .json({ message: "Error when uploading the file" });
       }
 
       const newDocument = await prisma.userDocuments.create({

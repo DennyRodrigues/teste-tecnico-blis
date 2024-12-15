@@ -1,11 +1,9 @@
-import { PrismaClient } from "@prisma/client";
 import express from "express";
-import authRouter from "./routes/auth";
-import { verifyToken } from "./middlewares/verifyToken";
 import path from "path";
-import abilitiesRouter from "./routes/abilities";
 
-const prisma = new PrismaClient();
+import { verifyToken } from "./middlewares/verifyToken";
+import abilitiesRouter from "./routes/abilities";
+import authRouter from "./routes/auth";
 const app = express();
 const port = 3000;
 

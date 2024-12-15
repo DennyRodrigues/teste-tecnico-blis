@@ -1,8 +1,11 @@
+import { NextFunction, Request,Response } from "express";
 import jwt from "jsonwebtoken";
-import {  Response, NextFunction, Request } from "express";
 
-
-export const verifyToken = (req: Request, res: Response, next: NextFunction) => {
+export const verifyToken = (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   const token = req.header("Authorization")?.replace("Bearer ", "");
 
   if (!token) {
@@ -16,7 +19,7 @@ export const verifyToken = (req: Request, res: Response, next: NextFunction) => 
     console.log(decoded);
     req.user = decoded;
     next();
-  } catch (err) {
+  } catch {
     res.status(401).json({
       message: "Token is not valid",
     });
