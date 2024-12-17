@@ -9,5 +9,8 @@ declare global {
 }
 
 export interface AuthenticatedRequest extends Request {
-  user: { email: string };
+  user: {
+    email: string,
+    userId: string,
+   };
 }

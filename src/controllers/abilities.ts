@@ -26,7 +26,7 @@ export const createAbilities = expressAsyncHandler(async (req, res) => {
 
   if (ability) {
     res.status(400).json({
-      message: "Abilitiy with this name already exists",
+      message: "Ability with this name already exist",
     });
     return;
   }
@@ -39,7 +39,8 @@ export const createAbilities = expressAsyncHandler(async (req, res) => {
   });
 
   res.json({
-    message: `Abilitiy ${newAbility.name} was created`,
+    message: `Ability ${newAbility.name} was created`,
+    data: newAbility,
   });
 });
 
@@ -62,7 +63,7 @@ export const updateAbilities = expressAsyncHandler(async (req, res) => {
 
   if (!ability) {
     res.status(400).json({
-      message: `Ability ${value.name} does not exists`,
+      message: `Ability ${value.name} does not exist`,
     });
     return;
   }
@@ -90,5 +91,6 @@ export const updateAbilities = expressAsyncHandler(async (req, res) => {
     message: `Ability ${newAbility.name} was changed to be ${
       value.active ? "activated" : "disabled"
     }`,
+    data: newAbility,
   });
 });

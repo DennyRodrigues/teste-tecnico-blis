@@ -27,7 +27,7 @@ export const registerUser = expressAsyncHandler(async (req, res) => {
 
   if (user) {
     res.status(400).json({
-      message: "User with this email already exists",
+      message: "User with this email already exist",
     });
     return;
   }
@@ -104,7 +104,7 @@ export const saveUserDocuments = expressAsyncHandler(
 
       if (!userInfo) {
         res.status(400).json({
-          message: "user does not exists",
+          message: "user does not exist",
         });
         return;
       }
