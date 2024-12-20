@@ -1,0 +1,20 @@
+### Para rodar o projeto:
+
+
+### Autenticação
+
+Autenticação utiliza JWT TOKEN:
+O middleware de verificação pode ser encontrado nesse caminho:
+src/middlewares/verifyToken.ts
+
+Importante notar que esse middleware salva algumas informações do user como o ID no request, permitindo que outros controllers possam utilizar esse id
+
+
+### Atividade extra:
+
+
+{{API_URL}}/job/me
+Irá retornar uma lista de jobs recomendadas para o usuário de acordo com as habilidades que ele salvou.
+
+Lista de jobs recomendados para o usuário com base nas habilidades dele
+
