@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { Prisma } from "@prisma/client";
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { ErrorRequestHandler } from "express";
 import Joi from "joi";
 import { JsonWebTokenError } from "jsonwebtoken";
@@ -9,7 +9,8 @@ import { JsonWebTokenError } from "jsonwebtoken";
 export const errorHandler: ErrorRequestHandler = (
   error: any,
   req: Request,
-  res: Response
+  res: Response,
+  next: NextFunction
 ): void => {
   console.log("res:", res);
   console.error("Error:", error);

@@ -6,6 +6,7 @@ import { verifyToken } from "./middlewares/verifyToken";
 import abilitiesRouter from "./routes/abilities";
 import authRouter from "./routes/auth";
 import userAbilitiesRouter from "./routes/userAbilities";
+import jobsRouter from "./routes/jobs";
 
 const app = express();
 const port = 3000;
@@ -28,5 +29,7 @@ app.listen(port, () => {
 app.use("/api/v1/users", authRouter);
 app.use("/api/v1/abilities", abilitiesRouter);
 app.use("/api/v1/users/abilities", userAbilitiesRouter);
+app.use("/api/v1/jobs", jobsRouter);
+
 
 app.use(errorHandler);

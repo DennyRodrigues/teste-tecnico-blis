@@ -11,6 +11,7 @@
       "@/config/*": ["src/config/*"],
       "@/controllers/*": ["src/controllers/*"],
       "@/middlewares/*": ["src/middlewares/*"],
+      "@/externalServices/*": ["src/externalServices/*"],
       "@/models/*": ["src/models/*"],
       "@/routes/*": ["src/routes/*"],
       "@/prismaClient/*": ["src/prismaClient/*"],
