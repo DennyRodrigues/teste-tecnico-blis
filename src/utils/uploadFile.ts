@@ -1,10 +1,15 @@
 import { randomUUID } from "crypto";
+import { existsSync, mkdirSync } from "fs";
 import multer from "multer";
 import path from "path";
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb) {
-    cb(null, "uploads/");
+    const path = "uploads/";
+    if (!existsSync(path)) {
+      mkdirSync(path, { recursive: true });
+    }
+    return cb(null, path);
   },
   filename: function (req, file, cb) {
     cb(null, randomUUID());
