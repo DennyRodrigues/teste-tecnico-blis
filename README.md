@@ -2,44 +2,70 @@
 
 Este projeto é uma API REST construída utilizando Node.js, Express, Typescript, Prisma (como ORM) e MySQL. Ele inclui funcionalidades para gerenciamento de usuários, documentos, habilidades e relacionamentos entre usuários e habilidades, além de autenticação via JWT.
 
-### Como Rodar o Projeto
+### Como rodar esse projeto
+1. Clone o Repositório
+```bash
+git clone <URL_DO_REPOSITORIO>
+```
+2. Instale as Dependências
+```bash
+yarn install
+```
+3. Configure o Banco de Dados
+Crie um banco de dados MySQL e tome nota das informações de conexão.
+Exemplo:
+```
+mysql://user:password@localhost:3306/database_name
+```
+4. Configure o Arquivo .env
+Crie um arquivo .env na raiz do projeto com o seguinte conteúdo:
+```env
+BASE_URL_ADZUNA=
+API_ID_ADZUNA=
+API_KEY_ADZUNA=
+DATABASE_URL="mysql://user:password@localhost:3306/database_name"
+JWT_SECRET="seu_token_secreto_aqui"
+```
+5. Inicialize o Prisma e Aplique as Migrações
+```bash
+npx prisma init
+npx prisma migrate dev
+```
+6. Popule o Banco de Dados
+```bash
+yarn seed
+```
+Este comando criará o seguinte usuário:
+**Detalhes do Usuário:**
 
-yarn.
+Nome: João Silva
+Data de Nascimento: 01 de janeiro de 1990
+Email: joao.silva@example.com
+Senha: senha criptografada (utilizando bcrypt)
+Habilidades:
+Desenvolvedor Backend (5 anos de experiência)
 
-3. Configuração do Banco de Dados
-   Crie o banco de dados MySQL e configure a string de conexão no arquivo .env:
-   `.env`
-   `DATABASE_URL="mysql://user:password@localhost:3306/database_name"`
-   `JWT_SECRET="seu_token_secreto_aqui"`
-4. Para utilizar o prisma:
-   `npx prisma init`
-   `npx prisma migrate`
-5. Para criar o seed no database:
 
-`yarn seed`
 
-Esse comando irá criar o user abaixo:
+7. Configure a API Externa
+Este projeto utiliza a API pública Adzuna (https://developer.adzuna.com/)
+Para configurá-la:
 
-- **Nome**: João Silva
-- **Data de Nascimento**: 01 de janeiro de 1990
-- **Email**: joao.silva@example.com
-- **Senha**: senha criptografada (utilizando **bcrypt**)
-- **Habilidades**:
-  - **Desenvolvedor Backend** (5 anos de experiência)
+Crie uma conta no site da Adzuna
+Obtenha os valores de API_ID e API_KEY
+Atualize o arquivo .env com os valores:
+```env
+BASE_URL_ADZUNA=
+API_ID_ADZUNA=
+API_KEY_ADZUNA=
+```
 
-6. Configure uma API KEY externa
-   Esse projeto utiliza essa API pública: https://developer.adzuna.com/
-
-Necessário adicionar esses dois valores no .env:
-`BASE_URL_ADZUNA=`
-`API_ID_ADZUNA`
-`API_KEY_ADZUNA=`
-`JWT_SECRET` 7. Para rodar o servidor de desenvolvimento:
-
-`yarn dev`
-O servidor estará disponível em http://localhost:3000 por default.
-
-### Considerações finais para rodar o projeto:
+8. Inicie o Servidor de Desenvolvimento
+```bash
+yarn dev
+```
+O servidor estará disponível em http://localhost:3000 por padrão.
+#### Considerações finais para rodar o projeto:
 
 As environment variables do projeto são essas:
 `BASE_URL_ADZUNA=`
@@ -93,7 +119,8 @@ eslint: Esse projeto contém eslint para ajudar a padronizar o código.
 
 ### Atividade extra:
 
-{{API_URL}}/job/me
+GET  API_URL/job/me
 Irá retornar uma lista de jobs recomendadas para o usuário de acordo com as habilidades que ele salvou.
 
 Lista de jobs recomendados para o usuário com base nas habilidades dele
+```
