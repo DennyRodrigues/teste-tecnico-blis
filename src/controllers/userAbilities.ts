@@ -162,6 +162,10 @@ export const getUserAbilities = expressAsyncHandler(
   }
 );
 
+// Esse request valida se as abilities existem, antes de tentar deletar.
+// Caso elas existam, irá validar se a relação entre user e ability exist.
+// Logo depois irá deletar as relações que foram encontradas.
+// Caso erre aqui, irá retornar um erro dizendo que nem todas as abilities foram encontradas.
 export const deleteUserAbilities = expressAsyncHandler(
   async (req: AuthenticatedRequest, res) => {
     const { error, value } = userAbilitiesDeleteSchema.validate(req.body, {
@@ -179,15 +183,75 @@ export const deleteUserAbilities = expressAsyncHandler(
     const { ability_names } = value;
 
     try {
+      // Find all requested abilities
       const abilities = await prisma.abilities.findMany({
         where: {
           name: {
             in: ability_names,
           },
         },
-        select: { id: true },
+        select: {
+          id: true,
+          name: true,
+        },
       });
 
+      // Check if all requested abilities exist
+      if (abilities.length !== ability_names.length) {
+        const foundAbilityNames = abilities.map((a) => a.name);
+        const notFoundAbilities = ability_names.filter(
+          (name: string) => !foundAbilityNames.includes(name)
+        );
+
+        res.status(404).json({
+          message: "Some abilities were not found",
+          details: {
+            requested: ability_names,
+            notFound: notFoundAbilities,
+            found: foundAbilityNames,
+          },
+        });
+        return;
+      }
+      const userAbilitiesCount = await prisma.usersAbilities.count({
+        where: {
+          user_id: req.user.userId,
+          ability_id: {
+            in: abilities.map((ability) => ability.id),
+          },
+        },
+      });
+
+      if (userAbilitiesCount !== ability_names.length) {
+        const userAbilities = await prisma.usersAbilities.findMany({
+          where: {
+            user_id: req.user.userId,
+            ability_id: {
+              in: abilities.map((ability) => ability.id),
+            },
+          },
+          include: {
+            ability: {
+              select: { name: true },
+            },
+          },
+        });
+
+        const userAbilityNames = userAbilities.map((ua) => ua.ability.name);
+        const notFoundUserAbilities = ability_names.filter(
+          (name: string) => !userAbilityNames.includes(name)
+        );
+
+        res.status(404).json({
+          message: "Some abilities are not associated with the user",
+          details: {
+            requested: ability_names,
+            notFound: notFoundUserAbilities,
+            found: userAbilityNames,
+          },
+        });
+        return;
+      }
       const deletedAbilities = await prisma.usersAbilities.deleteMany({
         where: {
           user_id: req.user.userId,
@@ -197,10 +261,23 @@ export const deleteUserAbilities = expressAsyncHandler(
         },
       });
 
+      if (deletedAbilities.count !== ability_names.length) {
+        res.status(500).json({
+          message: "Not all abilities were deleted",
+          details: {
+            requested: ability_names,
+            deletedCount: deletedAbilities.count,
+            expectedCount: ability_names.length,
+          },
+        });
+        return;
+      }
+
       res.json({
-        message: "Abilities deleted successfully",
+        message: "All abilities were successfully deleted",
         data: {
           deletedCount: deletedAbilities.count,
+          deletedAbilities: ability_names,
         },
       });
       return;
@@ -208,6 +285,9 @@ export const deleteUserAbilities = expressAsyncHandler(
       console.error(err);
       res.status(500).json({
         message: "Failed to delete user abilities",
+        details: {
+          requested: ability_names,
+        },
       });
       return;
     }

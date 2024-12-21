@@ -43,7 +43,7 @@ export const registerUser = expressAsyncHandler(async (req, res) => {
     },
   });
 
-  res.json({
+  res.status(201).json({
     message: `Account for ${newUser.email} was created`,
   });
 });
