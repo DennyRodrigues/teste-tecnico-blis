@@ -1,0 +1,1071 @@
+{
+	"info": {
+		"_postman_id": "c5ee9b81-05bd-4e18-b5eb-274af21b605c",
+		"name": "blis",
+		"description": "# 🚀 Get started here\n\nThis template guides you through CRUD operations (GET, POST, PUT, DELETE), variables, and tests.\n\n## 🔖 **How to use this template**\n\n#### **Step 1: Send requests**\n\nRESTful APIs allow you to perform CRUD operations using the POST, GET, PUT, and DELETE HTTP methods.\n\nThis collection contains each of these [request](https://learning.postman.com/docs/sending-requests/requests/) types. Open each request and click \"Send\" to see what happens.\n\n#### **Step 2: View responses**\n\nObserve the response tab for status code (200 OK), response time, and size.\n\n#### **Step 3: Send new Body data**\n\nUpdate or add new data in \"Body\" in the POST request. Typically, Body data is also used in PUT request.\n\n```\n{\n    \"name\": \"Add your name in the body\"\n}\n\n ```\n\n#### **Step 4: Update the variable**\n\nVariables enable you to store and reuse values in Postman. We have created a [variable](https://learning.postman.com/docs/sending-requests/variables/) called `base_url` with the sample request [https://postman-api-learner.glitch.me](https://postman-api-learner.glitch.me). Replace it with your API endpoint to customize this collection.\n\n#### **Step 5: Add tests in the \"Scripts\" tab**\n\nAdding tests to your requests can help you confirm that your API is working as expected. You can write test scripts in JavaScript and view the output in the \"Test Results\" tab.\n\n<img src=\"https://content.pstmn.io/fa30ea0a-373d-4545-a668-e7b283cca343/aW1hZ2UucG5n\" width=\"2162\" height=\"1530\">\n\n## 💪 Pro tips\n\n- Use folders to group related requests and organize the collection.\n    \n- Add more [scripts](https://learning.postman.com/docs/writing-scripts/intro-to-scripts/) to verify if the API works as expected and execute workflows.\n    \n\n## 💡Related templates\n\n[API testing basics](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9a37a28-055b-49cd-8c7e-97494a21eb54&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[API documentation](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=e9c28f47-1253-44af-a2f3-20dce4da1f18&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)  \n[Authorization methods](https://go.postman.co/redirect/workspace?type=personal&collectionTemplateId=31a9a6ed-4cdf-4ced-984c-d12c9aec1c27&sourceTemplateId=ddb19591-3097-41cf-82af-c84273e56719)",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "19932458",
+		"_collection_link": "https://bold-shadow-425076.postman.co/workspace/Instagram~26d411eb-5743-40e0-a17c-c3e0c020f422/collection/19932458-c5ee9b81-05bd-4e18-b5eb-274af21b605c?action=share&source=collection_link&creator=19932458"
+	},
+	"item": [
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "register",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"name\": \"John Doe\",\n  \"birthdate\": \"1990-01-01\",\n  \"email\": \"johndoe@example.com\",\n  \"password\": \"password123\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": [
+						{
+							"name": "register",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"name\": \"John\",\n  \"birthdate\": \"1990-01-01\",\n  \"email\": \"joaoSilveira@example.com\",\n  \"password\": \"password123\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/users",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "62"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"3e-+1UjqaURALBTO2PCQQe3LQYQIzM\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 21 Dec 2024 23:59:01 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Account for joaoSilveira@example.com was created\"\n}"
+						}
+					]
+				},
+				{
+					"name": "login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"pm.test(\"Successful POST request\", function () {",
+									"    pm.expect(pm.response.code).to.be.oneOf([200, 201]);",
+									"    const responseData = pm.response.json();",
+									"    console.log(responseData);",
+									"    console.log(responseData.token);",
+									"        pm.collectionVariables.set(\"auth_token\", responseData.token);",
+									"});",
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						},
+						{
+							"listen": "prerequest",
+							"script": {
+								"exec": [
+									""
+								],
+								"type": "text/javascript",
+								"packages": {}
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n  \"email\": \"johndoe@example.com\",\n  \"password\": \"password123\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{base_url}}/users/login",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"login"
+							]
+						},
+						"description": "This is a POST request, submitting data to an API via the request body. This request submits JSON data, and the data is reflected in the response.\n\nA successful POST request typically returns a `200 OK` or `201 Created` response code."
+					},
+					"response": [
+						{
+							"name": "login",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n  \"email\": \"joao.silva@example.com\",\n  \"password\": \"senha123\"\n}\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/users/login",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users",
+										"login"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "277"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"115-Op0lWfCjY2Tb2CDVrQGBhBi8d3M\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 21 Dec 2024 23:26:01 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Login successful\",\n    \"token\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiJjMjEzN2QzOC01Njk1LTQ0MWItYTc5MC1hYzIwMDk4NDdiNGEiLCJlbWFpbCI6ImpvYW8uc2lsdmFAZXhhbXBsZS5jb20iLCJpYXQiOjE3MzQ4MjM1NjEsImV4cCI6MTczNDgyNTM2MX0.1ValSmqJ4n_VtH1p9YzdZFaBKFkE_D3wOLcoe_1kEYQ\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "protected",
+			"item": [
+				{
+					"name": "abilities",
+					"item": [
+						{
+							"name": "Create abilitiy",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"cozinheiro\"\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/abilities",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"abilities"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Create abilitiy",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"react\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/abilities",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"abilities"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "201"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"c9-a6xszTSBnIyAgScGz6KbHOW62lw\""
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 21 Dec 2024 23:27:20 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Ability react was created\",\n    \"data\": {\n        \"id\": \"8f7b0432-5c3d-400d-bf15-c9d074e63266\",\n        \"name\": \"react\",\n        \"active\": true,\n        \"created_at\": \"2024-12-21T23:27:20.880Z\",\n        \"updated_at\": \"2024-12-21T23:27:20.880Z\"\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "disable ability",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{auth_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"cozinheiro\",\r\n    \"active\": false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/abilities",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"abilities"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "disable ability",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"react\",\r\n    \"active\": true\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/abilities",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"abilities"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "217"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"d9-P/rBDsVzvEHqJFdQvQGejxsZUqM\""
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 21 Dec 2024 23:27:33 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Ability react was changed to be disabled\",\n    \"data\": {\n        \"id\": \"8f7b0432-5c3d-400d-bf15-c9d074e63266\",\n        \"name\": \"react\",\n        \"active\": false,\n        \"created_at\": \"2024-12-21T23:27:20.880Z\",\n        \"updated_at\": \"2024-12-21T23:27:33.404Z\"\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "Active ability",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{auth_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n    \"name\": \"cozinheiro\",\r\n    \"active\": false\r\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/abilities",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"abilities"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Active ability",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"name\": \"react\",\r\n    \"active\": true\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/abilities",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"abilities"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "217"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"d9-WX8G8/7/pcGPEklcdJHvdU1ZJl0\""
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 21 Dec 2024 23:28:00 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"Ability react was changed to be activated\",\n    \"data\": {\n        \"id\": \"8f7b0432-5c3d-400d-bf15-c9d074e63266\",\n        \"name\": \"react\",\n        \"active\": true,\n        \"created_at\": \"2024-12-21T23:27:20.880Z\",\n        \"updated_at\": \"2024-12-21T23:28:00.866Z\"\n    }\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "user and ability",
+					"item": [
+						{
+							"name": "create userAbility",
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"email\": \"johndoe@example.com\",\r\n  \"abilitiyName\": \"cozinheiro\",\r\n  \"years_experience\": 2\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}/users/abilities",
+									"host": [
+										"{{base_url}"
+									],
+									"path": [
+										"users",
+										"abilities"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "create userAbility",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"ability_name\": \"react\",\r\n  \"years_experience\": 2\r\n}\r\n",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/users/abilities",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"users",
+												"abilities"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "256"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"100-pllZAqBxnI0R8sE5W6476EC02uU\""
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 21 Dec 2024 23:28:22 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"id\": \"5f138910-65cf-40e9-9fbe-b3df276f2d6e\",\n        \"user_id\": \"c2137d38-5695-441b-a790-ac2009847b4a\",\n        \"ability_id\": \"8f7b0432-5c3d-400d-bf15-c9d074e63266\",\n        \"years_experience\": 2,\n        \"created_at\": \"2024-12-21T23:28:22.302Z\",\n        \"updated_at\": \"2024-12-21T23:28:22.302Z\"\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "Delete userAbilities",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\r\n  \"ability_names\": [\"abc\"],\r\n}\r\n",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{base_url}}/users/abilities",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users",
+										"abilities"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "delete user ability",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n  \"ability_names\": [\"react\"]\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/users/abilities",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"users",
+												"abilities"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "108"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"6c-Jt2TumGtn2eLYwLdQuDDZDQvEzw\""
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 21 Dec 2024 23:29:22 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": \"All abilities were successfully deleted\",\n    \"data\": {\n        \"deletedCount\": 1,\n        \"deletedAbilities\": [\n            \"react\"\n        ]\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "Get userAbilties",
+							"request": {
+								"method": "GET",
+								"header": []
+							},
+							"response": [
+								{
+									"name": "get userAbilities",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\r\n    \"page\": \"1\",\r\n    \"pageSize\": \"1\"\r\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{base_url}}/users/abilities?pageSize=5&page=1",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"users",
+												"abilities"
+											],
+											"query": [
+												{
+													"key": "pageSize",
+													"value": "5"
+												},
+												{
+													"key": "page",
+													"value": "1"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "856"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"358-RzUCU/bkWzV2QstxGWZ/g41xXLw\""
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 21 Dec 2024 23:30:16 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": {\n        \"user\": {\n            \"id\": \"c2137d38-5695-441b-a790-ac2009847b4a\",\n            \"name\": \"João Silva\",\n            \"birthdate\": \"1990-01-01T00:00:00.000Z\",\n            \"email\": \"joao.silva@example.com\",\n            \"password\": \"$2b$10$0TTTbuS35W1ZMnGriN8yqe8Bn/oERWnjQa5Q8Mv8CsqdFVXb057Bu\",\n            \"created_at\": \"2024-12-20T22:09:33.461Z\",\n            \"updated_at\": \"2024-12-20T22:09:33.461Z\"\n        },\n        \"userAbilities\": [\n            {\n                \"years_experience\": 3,\n                \"created_at\": \"2024-12-21T23:30:13.097Z\",\n                \"ability\": {\n                    \"id\": \"8f7b0432-5c3d-400d-bf15-c9d074e63266\",\n                    \"name\": \"react\",\n                    \"active\": true,\n                    \"created_at\": \"2024-12-21T23:27:20.880Z\",\n                    \"updated_at\": \"2024-12-21T23:28:00.866Z\"\n                }\n            },\n            {\n                \"years_experience\": 5,\n                \"created_at\": \"2024-12-20T22:09:33.523Z\",\n                \"ability\": {\n                    \"id\": \"494ea640-1410-4e91-a562-18ce0f1158eb\",\n                    \"name\": \"Desenvolvedor Backend\",\n                    \"active\": true,\n                    \"created_at\": \"2024-12-20T22:09:33.486Z\",\n                    \"updated_at\": \"2024-12-20T22:09:33.486Z\"\n                }\n            }\n        ]\n    },\n    \"meta\": {\n        \"page\": 1,\n        \"pageSize\": 5,\n        \"total\": 2,\n        \"totalPages\": 1\n    }\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "jobs",
+					"item": [
+						{
+							"name": "Get jobs for user",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{base_url}}/jobs/user",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"jobs",
+										"user"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "get jobs for user",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{base_url}}/jobs/user",
+											"host": [
+												"{{base_url}}"
+											],
+											"path": [
+												"jobs",
+												"user"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "13571"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"3503-N9Z2EDMaee0oC+KIrO6bt0PqWnA\""
+										},
+										{
+											"key": "Date",
+											"value": "Sat, 21 Dec 2024 23:31:12 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"data\": [\n        {\n            \"company\": {\n                \"__CLASS__\": \"Adzuna::API::Response::Company\",\n                \"display_name\": \"ADLIB Recruitment\"\n            },\n            \"created\": \"2024-11-16T03:38:16Z\",\n            \"category\": {\n                \"tag\": \"it-jobs\",\n                \"label\": \"IT Jobs\",\n                \"__CLASS__\": \"Adzuna::API::Response::Category\"\n            },\n            \"salary_min\": 45000,\n            \"latitude\": 53.796787,\n            \"redirect_url\": \"https://www.adzuna.co.uk/jobs/land/ad/4940960585?se=mNaCqvO_7xGZeDGtBoUnaA&utm_medium=api&utm_source=063c995b&v=38200EBF9D7B0BC110F9F8233AEE9C4576CB0A0B\",\n            \"salary_is_predicted\": \"0\",\n            \"longitude\": -1.533925,\n            \"title\": \"Backend Developer\",\n            \"contract_type\": \"permanent\",\n            \"adref\": \"eyJhbGciOiJIUzI1NiJ9.eyJzIjoibU5hQ3F2T183eEdaZURHdEJvVW5hQSIsImkiOiI0OTQwOTYwNTg1In0.Tqu0-0vpvRfBFwfLiS4uoROmqR4LPulQ8RgdM8w2qEE\",\n            \"salary_max\": 45000,\n            \"id\": \"4940960585\",\n            \"description\": \"A well-established eCommerce agency is looking to add a talented and driven Developer to their team and take point on key clients projects. We are looking for a Backend Developer with strong experience working in an Agency environment, and who with building eCommerce & Web Solutions for a variety of clients. What youll be doing Our client is an ethical, progressive, & forward-thinking eCommerce agency who have a track record of building user-friendly, streamlined solutions. Since becoming B Cor…\",\n            \"location\": {\n                \"area\": [\n                    \"UK\",\n                    \"Yorkshire And The Humber\",\n                    \"West Yorkshire\",\n                    \"Leeds\",\n                    \"Hunslet\"\n                ],\n                \"__CLASS__\": \"Adzuna::API::Response::Location\",\n                \"display_name\": \"Hunslet, Leeds\"\n            },\n            \"__CLASS__\": \"Adzuna::API::Response::Job\"\n        },\n        {\n            \"salary_max\": 85000,\n            \"id\": \"4984286264\",\n            \"category\": {\n                \"tag\": \"it-jobs\",\n                \"__CLASS__\": \"Adzuna::API::Response::Category\",\n                \"label\": \"IT Jobs\"\n            },\n            \"salary_min\": 85000,\n            \"description\": \"Senior Developer needed for AI Startup Do you want to work on genuine greenfield projects? Want to use your skills to aid Education? Want to work with like minded individuals with the latest technologies? The Role Youll play a pivotal role in developing the end to end architecture of this clients advanced analytics platform, with a chance to build impactful products from the ground up This client will soon become a household name across the Globe, now is your chance to get in early and make you…\",\n            \"location\": {\n                \"__CLASS__\": \"Adzuna::API::Response::Location\",\n                \"area\": [\n                    \"UK\",\n                    \"Northern Ireland\",\n                    \"Belfast\"\n                ],\n                \"display_name\": \"Belfast, Northern Ireland\"\n            },\n            \"__CLASS__\": \"Adzuna::API::Response::Job\",\n            \"redirect_url\": \"https://www.adzuna.co.uk/jobs/land/ad/4984286264?se=mNaCqvO_7xGZeDGtBoUnaA&utm_medium=api&utm_source=063c995b&v=8433BA1B6E5622F8E4D8BA0B8B4B58328F6D51F5\",\n            \"salary_is_predicted\": \"0\",\n            \"company\": {\n                \"__CLASS__\": \"Adzuna::API::Response::Company\",\n                \"display_name\": \"Ocho\"\n            },\n            \"title\": \"Senior Backend Developer\",\n            \"created\": \"2024-12-20T07:22:31Z\",\n            \"adref\": \"eyJhbGciOiJIUzI1NiJ9.eyJzIjoibU5hQ3F2T183eEdaZURHdEJvVW5hQSIsImkiOiI0OTg0Mjg2MjY0In0._wXXTUOuO90qEYpJaZxjCpP2QiZPW8WagjJUAKLx3Lw\"\n        },\n        {\n            \"description\": \"Lead Backend Engineer Salary up to £110,000  Equity London 1 day a week The Role As part of this senior role, you will be primarily responsible for working with the backend team managing the Python Django backend with a GraphQL API built to power a new Enterprise platform. It's an exciting time to join this early start up, which will give you the opportunity to put many of your skills to the test and build what would be the leader in product research. The ideal profile Able to own, deliver and …\",\n            \"location\": {\n                \"display_name\": \"Liverpool Street, Central London\",\n                \"__CLASS__\": \"Adzuna::API::Response::Location\",\n                \"area\": [\n                    \"UK\",\n                    \"London\",\n                    \"Central London\",\n                    \"Liverpool Street\"\n                ]\n            },\n            \"__CLASS__\": \"Adzuna::API::Response::Job\",\n            \"salary_max\": 100000,\n            \"id\": \"4953537522\",\n            \"title\": \"Lead Backend Engineer\",\n            \"longitude\": -0.087798,\n            \"contract_type\": \"permanent\",\n            \"adref\": \"eyJhbGciOiJIUzI1NiJ9.eyJzIjoibU5hQ3F2T183eEdaZURHdEJvVW5hQSIsImkiOiI0OTUzNTM3NTIyIn0.t988wI7QLF1wMl7Ar44DHt_wnYDBJZpc8jOsxGKkKak\",\n            \"latitude\": 51.517617,\n            \"redirect_url\": \"https://www.adzuna.co.uk/jobs/land/ad/4953537522?se=mNaCqvO_7xGZeDGtBoUnaA&utm_medium=api&utm_source=063c995b&v=13947F7EC3D1692B8996336A6BD96BE13B7F5CBE\",\n            \"salary_is_predicted\": \"0\",\n            \"salary_min\": 100000,\n            \"category\": {\n                \"label\": \"IT Jobs\",\n                \"__CLASS__\": \"Adzuna::API::Response::Category\",\n                \"tag\": \"it-jobs\"\n            },\n            \"company\": {\n                \"display_name\": \"Bloc Recruitment\",\n                \"__CLASS__\": \"Adzuna::API::Response::Company\"\n            },\n            \"created\": \"2024-11-27T21:54:53Z\"\n        },\n        {\n            \"salary_max\": 65000,\n            \"id\": \"4983329032\",\n            \"salary_min\": 65000,\n            \"description\": \"Join Our Team of Innovators Are you ready to make a difference in the world of smart home technology? We're on a mission to revolutionize home automation with cutting-edge products that save money, conserve energy, and enhance everyday life. Our team is passionate about creating technology that not only makes homes smarter but also contributes to a sustainable future. Why Join Us? We're a dynamic, fast-growing tech company with global reach, committed to improving lives and the planet. Headquar…\",\n            \"category\": {\n                \"label\": \"IT Jobs\",\n                \"__CLASS__\": \"Adzuna::API::Response::Category\",\n                \"tag\": \"it-jobs\"\n            },\n            \"__CLASS__\": \"Adzuna::API::Response::Job\",\n            \"location\": {\n                \"display_name\": \"Leeds, West Yorkshire\",\n                \"area\": [\n                    \"UK\",\n                    \"Yorkshire And The Humber\",\n                    \"West Yorkshire\",\n                    \"Leeds\"\n                ],\n                \"__CLASS__\": \"Adzuna::API::Response::Location\"\n            },\n            \"salary_is_predicted\": \"0\",\n            \"redirect_url\": \"https://www.adzuna.co.uk/jobs/land/ad/4983329032?se=mNaCqvO_7xGZeDGtBoUnaA&utm_medium=api&utm_source=063c995b&v=5BA66E93874072B61154C8D8A159F4FF6E7330D0\",\n            \"company\": {\n                \"display_name\": \"Corecom Consulting\",\n                \"__CLASS__\": \"Adzuna::API::Response::Company\"\n            },\n            \"title\": \"Python Backend Engineer\",\n            \"adref\": \"eyJhbGciOiJIUzI1NiJ9.eyJzIjoibU5hQ3F2T183eEdaZURHdEJvVW5hQSIsImkiOiI0OTgzMzI5MDMyIn0.qS545BqrYfVQ91kcwu4sxTvsIg4UHgl9Mz7qew83oyY\",\n            \"created\": \"2024-12-19T15:06:57Z\",\n            \"contract_type\": \"permanent\"\n        },\n        {\n            \"id\": \"4983232531\",\n            \"salary_max\": 65689.18,\n            \"contract_time\": \"full_time\",\n            \"location\": {\n                \"__CLASS__\": \"Adzuna::API::Response::Location\",\n                \"area\": [\n                    \"UK\"\n                ],\n                \"display_name\": \"UK\"\n            },\n            \"__CLASS__\": \"Adzuna::API::Response::Job\",\n            \"salary_min\": 65689.18,\n            \"description\": \"Front-End Engineer - React Developer Our client, a growing software consultancy that services the igaming sector, are looking to recruit the services of an experience Front End Developer/React Developer on a permanent basis to work on and develop their software products. The role can be based remotely, in the UK, or anywhere in Europe. Duties and Responsibilities will include: Develop features and improvements to our clients product in a secure, well-tested, and performant way Collaborate with …\",\n            \"category\": {\n                \"tag\": \"it-jobs\",\n                \"label\": \"IT Jobs\",\n                \"__CLASS__\": \"Adzuna::API::Response::Category\"\n            },\n            \"redirect_url\": \"https://www.adzuna.co.uk/jobs/details/4983232531?utm_medium=api&utm_source=063c995b\",\n            \"salary_is_predicted\": \"1\",\n            \"contract_type\": \"permanent\",\n            \"created\": \"2024-12-19T12:07:03Z\",\n            \"adref\": \"eyJhbGciOiJIUzI1NiJ9.eyJzIjoibU5hQ3F2T183eEdaZURHdEJvVW5hQSIsImkiOiI0OTgzMjMyNTMxIn0.AFqcj6GMznyEnVkUydtcQIogqgqXBLrYgcSJnlPy69g\",\n            \"company\": {\n                \"__CLASS__\": \"Adzuna::API::Response::Company\",\n                \"display_name\": \"Marshall Wolfe\"\n            },\n            \"title\": \"React Developer\"\n        },\n        {\n            \"redirect_url\": \"https://www.adzuna.co.uk/jobs/details/4912471592?utm_medium=api&utm_source=063c995b\",\n            \"salary_is_predicted\": \"0\",\n            \"company\": {\n                \"__CLASS__\": \"Adzuna::API::Response::Company\",\n                \"display_name\": \"Orbital Witness\"\n            },\n            \"title\": \"Backend Engineer\",\n            \"created\": \"2024-10-24T16:04:41Z\",\n            \"adref\": \"eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNDkxMjQ3MTU5MiIsInMiOiJtTmFDcXZPXzd4R1plREd0Qm9VbmFBIn0.9K6kET5aWzlZPfp7pKiflOWjNKpPrLmhydkq3A4FrLI\",\n            \"salary_max\": 100000,\n            \"id\": \"4912471592\",\n            \"salary_min\": 80000,\n            \"category\": {\n                \"label\": \"IT Jobs\",\n                \"__CLASS__\": \"Adzuna::API::Response::Category\",\n                \"tag\": \"it-jobs\"\n            },\n            \"description\": \"About Us  We are Orbital Witness  an AI company on a mission to automate the legal segment of every property transaction in the world  We iterate rapidly to build products that utilise the bleeding-edge of Generative AI. Products that are powered by the latest foundation LLM’s (Large Language Models) including GPT-4o. This places us at the forefront of THE most advanced technological advancements of our generation  We’re spearheading an unprecedented shift in how the world’s 1 asset class is tr…\",\n            \"location\": {\n                \"display_name\": \"London, UK\",\n                \"__CLASS__\": \"Adzuna::API::Response::Location\",\n                \"area\": [\n                    \"UK\",\n                    \"London\"\n                ]\n            },\n            \"contract_time\": \"full_time\",\n            \"__CLASS__\": \"Adzuna::API::Response::Job\"\n        },\n        {\n            \"latitude\": 51.503378,\n            \"salary_is_predicted\": \"1\",\n            \"redirect_url\": \"https://www.adzuna.co.uk/jobs/details/4710830774?utm_medium=api&utm_source=063c995b\",\n            \"adref\": \"eyJhbGciOiJIUzI1NiJ9.eyJzIjoibU5hQ3F2T183eEdaZURHdEJvVW5hQSIsImkiOiI0NzEwODMwNzc0In0.CeyR9wLagUCNmknkgxHeUYUMQiYATFlxY8i_5JYqwg8\",\n            \"longitude\": -0.139134,\n            \"title\": \"Backend Engineer\",\n            \"id\": \"4710830774\",\n            \"salary_max\": 40449.83,\n            \"location\": {\n                \"display_name\": \"London, UK\",\n                \"__CLASS__\": \"Adzuna::API::Response::Location\",\n                \"area\": [\n                    \"UK\",\n                    \"London\"\n                ]\n            },\n            \"__CLASS__\": \"Adzuna::API::Response::Job\",\n            \"description\": \"We’re on a mission to make the switch to sustainable transport and energy faster, easier and more affordable. We use our own technology stack, data smarts and industry knowledge to build a game-changing capability. Our intelligent energy platform helps our customers access renewable energy, understand consumer behaviour, and powers smart charging for EVs. The worlds of energy and transport are colliding and Ohme is at the heart of this new paradigm. By using technology and data integrations to …\",\n            \"created\": \"2024-05-28T16:41:18Z\",\n            \"company\": {\n                \"__CLASS__\": \"Adzuna::API::Response::Company\",\n                \"display_name\": \"Ohme\"\n            },\n            \"contract_time\": \"full_time\",\n            \"salary_min\": 40449.83,\n            \"category\": {\n                \"__CLASS__\": \"Adzuna::API::Response::Category\",\n                \"label\": \"IT Jobs\",\n                \"tag\": \"it-jobs\"\n            }\n        },\n        {\n            \"salary_min\": 50000,\n            \"category\": {\n                \"tag\": \"it-jobs\",\n                \"__CLASS__\": \"Adzuna::API::Response::Category\",\n                \"label\": \"IT Jobs\"\n            },\n            \"description\": \"An opportunity for a talented developer to join an ambitious start-up and help supercharge a unique product through the first tech build and early stages of growth. This is a broad role where you'll be able to help shape the direction of the technology and processes in place to achieve big goals. Requirements You have 2 years of experience with JavaScript and React Can work independently but also a team player You have excellent communication and collaboration skills You are passionate about de…\",\n            \"location\": {\n                \"area\": [\n                    \"UK\",\n                    \"Northern Ireland\",\n                    \"Belfast\"\n                ],\n                \"__CLASS__\": \"Adzuna::API::Response::Location\",\n                \"display_name\": \"Belfast, Northern Ireland\"\n            },\n            \"__CLASS__\": \"Adzuna::API::Response::Job\",\n            \"salary_max\": 50000,\n            \"id\": \"4983206768\",\n            \"title\": \"Frontend Developer - React\",\n            \"company\": {\n                \"__CLASS__\": \"Adzuna::API::Response::Company\",\n                \"display_name\": \"VANRATH\"\n            },\n            \"created\": \"2024-12-19T11:21:25Z\",\n            \"adref\": \"eyJhbGciOiJIUzI1NiJ9.eyJzIjoibU5hQ3F2T183eEdaZURHdEJvVW5hQSIsImkiOiI0OTgzMjA2NzY4In0.Y_oGpsyUc8YsB4EZ-nTQUF-iOCTSPlkjcgf9JXXDy4s\",\n            \"salary_is_predicted\": \"0\",\n            \"redirect_url\": \"https://www.adzuna.co.uk/jobs/land/ad/4983206768?se=mNaCqvO_7xGZeDGtBoUnaA&utm_medium=api&utm_source=063c995b&v=93FAA82CF3BA2748320A35A834FE99C9BF4161B8\"\n        },\n        {\n            \"redirect_url\": \"https://www.adzuna.co.uk/jobs/land/ad/4984516538?se=mNaCqvO_7xGZeDGtBoUnaA&utm_medium=api&utm_source=063c995b&v=AEE1562AF69567608B6EB1B22584C5D042209660\",\n            \"salary_is_predicted\": \"1\",\n            \"adref\": \"eyJhbGciOiJIUzI1NiJ9.eyJpIjoiNDk4NDUxNjUzOCIsInMiOiJtTmFDcXZPXzd4R1plREd0Qm9VbmFBIn0.zKai906nD6qZUOaFhbDE4sRnMisZuMPvY8cyvhO5s8g\",\n            \"created\": \"2024-12-20T13:56:56Z\",\n            \"company\": {\n                \"display_name\": \"RocketPower\",\n                \"__CLASS__\": \"Adzuna::API::Response::Company\"\n            },\n            \"title\": \"React Native Engineer\",\n            \"id\": \"4984516538\",\n            \"salary_max\": 63549.48,\n            \"__CLASS__\": \"Adzuna::API::Response::Job\",\n            \"contract_time\": \"full_time\",\n            \"location\": {\n                \"display_name\": \"London, UK\",\n                \"__CLASS__\": \"Adzuna::API::Response::Location\",\n                \"area\": [\n                    \"UK\",\n                    \"London\"\n                ]\n            },\n            \"salary_min\": 63549.48,\n            \"category\": {\n                \"tag\": \"it-jobs\",\n                \"__CLASS__\": \"Adzuna::API::Response::Category\",\n                \"label\": \"IT Jobs\"\n            },\n            \"description\": \"Company: EarlyStage VC Backed DeFi Startup Location: London (OnSite) Position Type: FullTime Compensation: $200,000 - $250,000 base salary  equity  tokens About the Role Our client, a well-funded startup revolutionizing decentralized finance (DeFi), is seeking a talented React Native Engineer to lead the development of their mobile applications. This is an opportunity to join a growing team, build consumer-facing apps at scale, and shape the mobile experience of a high-impact platform at the in…\"\n        },\n        {\n            \"salary_max\": 80000,\n            \"id\": \"4964777932\",\n            \"category\": {\n                \"tag\": \"it-jobs\",\n                \"__CLASS__\": \"Adzuna::API::Response::Category\",\n                \"label\": \"IT Jobs\"\n            },\n            \"salary_min\": 80000,\n            \"description\": \"SENIOR REACT NATIVE DEVELOPER HYBRID / REMOTE WORKING SALARY - £60,000 - £80,000 Your new role If you are a REACT / NATIVE Senior Developer who wants to work for a fast-moving Company and who understands that real changes happen by continual improvement of practices and principles - then this may be a role for you I am looking to speak to Senior React Native Developers who have experience across several technologies and ideally have worked with teams at various evolutionary stages. You will be …\",\n            \"location\": {\n                \"display_name\": \"Leeds, West Yorkshire\",\n                \"area\": [\n                    \"UK\",\n                    \"Yorkshire And The Humber\",\n                    \"West Yorkshire\",\n                    \"Leeds\"\n                ],\n                \"__CLASS__\": \"Adzuna::API::Response::Location\"\n            },\n            \"__CLASS__\": \"Adzuna::API::Response::Job\",\n            \"salary_is_predicted\": \"0\",\n            \"redirect_url\": \"https://www.adzuna.co.uk/jobs/land/ad/4964777932?se=mNaCqvO_7xGZeDGtBoUnaA&utm_medium=api&utm_source=063c995b&v=6580043735781B7E402C9451D8A031C486884AA5\",\n            \"company\": {\n                \"__CLASS__\": \"Adzuna::API::Response::Company\",\n                \"display_name\": \"Hays Technology\"\n            },\n            \"title\": \"Senior React Native Developer\",\n            \"contract_type\": \"permanent\",\n            \"created\": \"2024-12-05T20:35:17Z\",\n            \"adref\": \"eyJhbGciOiJIUzI1NiJ9.eyJzIjoibU5hQ3F2T183eEdaZURHdEJvVW5hQSIsImkiOiI0OTY0Nzc3OTMyIn0.foZOjfb5Ru8sLAD5nUg-f7vPWiYWYXWRWcGen8OM3ig\"\n        }\n    ]\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "salve document",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "formdata",
+							"formdata": [
+								{
+									"key": "document",
+									"type": "file",
+									"src": "/C:/Users/denny/Documents/sample.pdf"
+								},
+								{
+									"key": "name",
+									"value": "CNH",
+									"type": "text"
+								}
+							]
+						},
+						"url": {
+							"raw": "{{base_url}}/users/documents",
+							"host": [
+								"{{base_url}}"
+							],
+							"path": [
+								"users",
+								"documents"
+							]
+						}
+					},
+					"response": [
+						{
+							"name": "save document",
+							"originalRequest": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "formdata",
+									"formdata": [
+										{
+											"key": "document",
+											"type": "file",
+											"src": [
+												"/C:/Users/denny/Documents/sample.pdf",
+												"/C:/Users/denny/Documents/sample.pdf"
+											]
+										},
+										{
+											"key": "name",
+											"value": "CNH",
+											"type": "text"
+										}
+									]
+								},
+								"url": {
+									"raw": "{{base_url}}/users/documents",
+									"host": [
+										"{{base_url}}"
+									],
+									"path": [
+										"users",
+										"documents"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "json",
+							"header": [
+								{
+									"key": "X-Powered-By",
+									"value": "Express"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								},
+								{
+									"key": "Content-Length",
+									"value": "269"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"10d-QF0TplWefxhIC1vieWIt/7YeeFY\""
+								},
+								{
+									"key": "Date",
+									"value": "Sat, 21 Dec 2024 23:31:50 GMT"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Keep-Alive",
+									"value": "timeout=5"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"message\": \"Document uploaded successfully\",\n    \"document\": {\n        \"id\": \"a73eb54a-e706-4d13-98a7-5ab7849f0da7\",\n        \"name\": \"CNH\",\n        \"url\": \"uploads/undefined\",\n        \"user_id\": \"c2137d38-5695-441b-a790-ac2009847b4a\",\n        \"created_at\": \"2024-12-21T23:31:50.158Z\",\n        \"updated_at\": \"2024-12-21T23:31:50.158Z\"\n    }\n}"
+						}
+					]
+				}
+			],
+			"description": "Para todos os requestes que exigem token de autenticação",
+			"auth": {
+				"type": "bearer",
+				"bearer": [
+					{
+						"key": "token",
+						"value": "{{auth_token}}",
+						"type": "string"
+					}
+				]
+			},
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							"// // Define the base URL for your API\r",
+							"// const base_url = pm.environment.get(\"base_url\");\r",
+							"\r",
+							"// // Make a POST request to login\r",
+							"// try {\r",
+							"//     const response = await pm.sendRequest({\r",
+							"//         url: `${base_url}/users/login`,\r",
+							"//         method: \"POST\", // Correct HTTP method\r",
+							"//         body: {\r",
+							"//             mode: \"raw\",\r",
+							"//             raw: JSON.stringify({\r",
+							"//                 email: \"johndoe@example.com\",  // Replace with actual email\r",
+							"//                 password: \"password123\",       // Replace with actual password\r",
+							"//             }),\r",
+							"//         },\r",
+							"//         header: {\r",
+							"//             \"Content-Type\": \"application/json\",\r",
+							"//         },\r",
+							"//     });\r",
+							"\r",
+							"//     // Assuming the response contains a token\r",
+							"//     const responseData = response.json();\r",
+							"//     if (responseData.token) {\r",
+							"//         // Save the token to an environment variable\r",
+							"//         pm.collectionVariables.set(\"auth_token\", responseData.token);\r",
+							"\r",
+							"//         // Log the token to the console\r",
+							"//         console.log(\"Login successful. Token:\", responseData.token);\r",
+							"//     } else {\r",
+							"//         console.log(\"Token not found in the response.\");\r",
+							"//     }\r",
+							"// } catch (err) {\r",
+							"//     console.error(\"Error during login request:\", err);\r",
+							"// }\r",
+							""
+						]
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"packages": {},
+						"exec": [
+							""
+						]
+					}
+				}
+			]
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "base_url",
+			"value": "http://localhost:3000/api/v1",
+			"type": "default"
+		},
+		{
+			"key": "auth_token",
+			"value": ""
+		}
+	]
+}
