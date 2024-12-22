@@ -81,13 +81,19 @@ API_KEY_ADZUNA=
 ```
 Essa parte é da atividade extra pedida no trabalho.
 
-8. Inicie o Servidor de Desenvolvimento
-
+8. Inicie o Servidor 
+Para desenvolvimento:
 ```bash
 yarn dev
 ```
-
 O servidor estará disponível em http://localhost:3000 por padrão.
+
+Para produção:
+```bash
+yarn build 
+```
+A build ficará localizado na pasta `/dist`
+
 A API pode ser acessada usando a base url
 http://localhost:3000/api/v1
 #### Considerações finais para rodar o projeto:
